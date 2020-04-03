@@ -259,6 +259,10 @@ public class MinecraftProvider extends PhysicalDependencyProvider {
 	public File getMappedJar() {
 		return getJar();
 	}
+	
+	public File getMergedJar() {
+		return MINECRAFT_MERGED_JAR;
+	}
 
 	public File getJar() {
 		switch (side) {
