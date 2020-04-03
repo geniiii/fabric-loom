@@ -23,14 +23,10 @@ if (ENV.BUILD_NUMBER) {
 }
 
 repositories {
-	mavenCentral()
+	jcenter()
 	maven {
 		name = "Fabric"
 		url = 'https://maven.fabricmc.net/'
-	}
-	maven {
-		name = "Voldemaven"
-		url = "https://files.minecraftforge.net/maven/"
 	}
 	maven { 
 		name = "Jitpack"
@@ -52,21 +48,25 @@ dependencies {
 	implementation ('org.csveed:csveed:0.6.0')
 
 	// game handling utils
-	implementation ('net.fabricmc:stitch:0.4.1.68') {
+	implementation ('net.fabricmc:stitch:0.4.3.71') {
 		exclude module: 'enigma'
 		exclude module: 'tiny-mappings-parser'
 	}
-	implementation 'com.github.Chocohead:Tiny-Mappings-Parser:97260fd'
-	implementation 'com.github.Chocohead:OptiSine:cc6da75' //Keep consistent with Openfine.VERSION
-
-	// tinyfile management
-	implementation ('com.github.Chocohead:tiny-remapper:d4af165') {
+	implementation 'com.github.Chocohead:Tiny-Mappings-Parser:d96d407'
+	implementation ('com.github.Chocohead:OptiSine:cc6da75') {//Keep consistent with Openfine.VERSION
 		transitive = false
 	}
 
+	// tinyfile management
+	implementation ('com.github.Chocohead:tiny-remapper:15ddc5f') {
+		transitive = false
+	}
+	implementation 'cuchaz:enigma:0.15.152:lib'
+	implementation 'com.bulenkov:darcula:2018.2'
+
 	// decompilers
 	implementation ('net.fabricmc:procyon-fabric-compilertools:0.5.35.+')
-	implementation ('net.minecraftforge:forgeflower:1.5.380.38')
+	implementation ('com.github.Chocohead:ForgedFlower:c864803')
 
 	// source code remapping
 	implementation ('org.cadixdev:mercury:0.1.0.fabric-SNAPSHOT')
@@ -103,9 +103,12 @@ license {
 	exclude '**/loom/dependencies/LogicalDependencyProvider.java'
 	exclude '**/loom/dependencies/PhysicalDependencyProvider.java'
 	exclude '**/loom/providers/MappingsProvider.java'
+	exclude '**/loom/providers/SnappyRemapper.java'
 	exclude '**/loom/providers/StackedMappingsProvider.java'
 	exclude '**/loom/providers/mappings/*.java'
 	exclude '**/loom/providers/openfine/*.java'
+	exclude '**/loom/util/ThrowingIntObjConsumer.java'
+	exclude '**/loom/task/fernflower/JavadocProvider.java'
 }
 
 wrapper {
